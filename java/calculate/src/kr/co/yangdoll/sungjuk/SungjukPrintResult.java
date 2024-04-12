@@ -1,7 +1,7 @@
 package kr.co.yangdoll.sungjuk;
 
 public class SungjukPrintResult {
-	public void printResult(String hnum, String name, int kor, int math, int eng, int avg, int total) {
+	public void printResult(String hnum, String name, int kor, int math, int eng, double avg, int total) {
 		System.out.println("학번 : " + hnum);
 		System.out.println("이름 : " + name);
 		System.out.println("국어 : " + kor + ", 수학 : " + math + ", 영어 : " + eng);
