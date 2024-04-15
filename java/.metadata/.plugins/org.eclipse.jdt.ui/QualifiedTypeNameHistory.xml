@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="java.lang.System"/>
     <fullyQualifiedTypeName name="com.yangdoll.day1.PrintWorker"/>
+    <fullyQualifiedTypeName name="kr.co.yangdoll.calculator.NumberInput"/>
+    <fullyQualifiedTypeName name="kr.co.yangdoll.calculator.Compute"/>
+    <fullyQualifiedTypeName name="kr.co.yangdoll.calculator.ResultPrint"/>
+    <fullyQualifiedTypeName name="java.util.Scanner"/>
+    <fullyQualifiedTypeName name="kr.co.yangdoll.sungjuk.SungjukCalc"/>
+    <fullyQualifiedTypeName name="java.lang.System"/>
+    <fullyQualifiedTypeName name="kr.co.yangdoll.sungjuk.SungjukPrintResult"/>
+    <fullyQualifiedTypeName name="kr.co.yangdoll.sungjuk.SungjukDataInput"/>
 </qualifiedTypeNameHistroy>

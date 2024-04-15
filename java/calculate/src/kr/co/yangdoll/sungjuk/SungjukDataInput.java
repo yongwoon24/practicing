@@ -11,7 +11,7 @@ public class SungjukDataInput {
 	}
 
 	public int numInput(String message) {
-		System.out.println(message + "를 입력하세요.");
+		System.out.println(message + "점수를 입력하세요.");
 		return scanner.nextInt();
 	}
 }
