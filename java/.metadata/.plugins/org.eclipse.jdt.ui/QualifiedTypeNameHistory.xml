@@ -4,9 +4,16 @@
     <fullyQualifiedTypeName name="kr.co.yangdoll.calculator.NumberInput"/>
     <fullyQualifiedTypeName name="kr.co.yangdoll.calculator.Compute"/>
     <fullyQualifiedTypeName name="kr.co.yangdoll.calculator.ResultPrint"/>
-    <fullyQualifiedTypeName name="java.util.Scanner"/>
     <fullyQualifiedTypeName name="kr.co.yangdoll.sungjuk.SungjukCalc"/>
-    <fullyQualifiedTypeName name="java.lang.System"/>
     <fullyQualifiedTypeName name="kr.co.yangdoll.sungjuk.SungjukPrintResult"/>
     <fullyQualifiedTypeName name="kr.co.yangdoll.sungjuk.SungjukDataInput"/>
+    <fullyQualifiedTypeName name="java.util.List"/>
+    <fullyQualifiedTypeName name="java.util.ArrayList"/>
+    <fullyQualifiedTypeName name="javax.print.attribute.HashAttributeSet"/>
+    <fullyQualifiedTypeName name="java.util.Set"/>
+    <fullyQualifiedTypeName name="java.util.HashSet"/>
+    <fullyQualifiedTypeName name="java.util.Iterator"/>
+    <fullyQualifiedTypeName name="javax.swing.text.html.HTMLDocument.Iterator"/>
+    <fullyQualifiedTypeName name="java.util.Scanner"/>
+    <fullyQualifiedTypeName name="java.lang.System"/>
 </qualifiedTypeNameHistroy>
