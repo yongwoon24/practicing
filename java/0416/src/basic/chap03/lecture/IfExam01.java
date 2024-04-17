@@ -7,7 +7,8 @@ public class IfExam01 {
 		Scanner sc = new Scanner(System.in);
 		String sub[] = {"국어", "수학", "영어"};
 		int sub_score[] = {0,0,0};
-		int total_score = 0, avg_score = 0;
+		int total_score = 0;
+		int avg_score = 0;
 		//boolean chk = true;
 		while(true) {
 			for (int i = 0; i < sub.length; i++) {
