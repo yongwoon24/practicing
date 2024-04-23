@@ -7,7 +7,6 @@
     <fullyQualifiedTypeName name="kr.co.yangdoll.sungjuk.SungjukCalc"/>
     <fullyQualifiedTypeName name="kr.co.yangdoll.sungjuk.SungjukPrintResult"/>
     <fullyQualifiedTypeName name="kr.co.yangdoll.sungjuk.SungjukDataInput"/>
-    <fullyQualifiedTypeName name="java.util.List"/>
     <fullyQualifiedTypeName name="java.util.ArrayList"/>
     <fullyQualifiedTypeName name="javax.print.attribute.HashAttributeSet"/>
     <fullyQualifiedTypeName name="java.util.Set"/>
@@ -21,6 +20,15 @@
     <fullyQualifiedTypeName name="java.io.FileNotFoundException"/>
     <fullyQualifiedTypeName name="java.io.FileReader"/>
     <fullyQualifiedTypeName name="java.io.IOException"/>
+    <fullyQualifiedTypeName name="java.lang.String"/>
+    <fullyQualifiedTypeName name="java.lang.StringBuffer"/>
+    <fullyQualifiedTypeName name="java.lang.StringBuilder"/>
     <fullyQualifiedTypeName name="java.util.Scanner"/>
     <fullyQualifiedTypeName name="java.lang.System"/>
+    <fullyQualifiedTypeName name="java.util.List"/>
+    <fullyQualifiedTypeName name="refone.realexam.vo.CompetitorsMasterVO"/>
+    <fullyQualifiedTypeName name="java.sql.Connection"/>
+    <fullyQualifiedTypeName name="java.sql.Driver"/>
+    <fullyQualifiedTypeName name="java.sql.DriverManager"/>
+    <fullyQualifiedTypeName name="java.sql.PreparedStatement"/>
 </qualifiedTypeNameHistroy>
