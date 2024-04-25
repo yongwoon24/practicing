@@ -16,6 +16,7 @@ public class FileReadExam02 {
 		arr[N-1][N-1] = N*N;
 		int row = 1, col = 0, value = 2;
 		
+		//증가
 		for(int i = 1; i < N; i++) {
 			arr[row][col] = value++;
 			/*
@@ -40,7 +41,7 @@ public class FileReadExam02 {
 				row++;
 			}
 		}
-		System.out.println(N);
+		//System.out.println(N);
 		if(N%2==1) {
 			row--;
 			col++;
@@ -53,6 +54,7 @@ public class FileReadExam02 {
 		 * System.out.println("x = " + x); System.out.println("y = " + y);
 		 * System.out.println("value = " + value);
 		 */
+		//감소
 		for(int i = N-2; i > 0;i--) 
 		{
 			arr[row][col] = value++; 
@@ -78,9 +80,7 @@ public class FileReadExam02 {
 				col++;
 			}
 		}
-		
-		
-	
+		//출력
 		for(int i = 0; i < N;i++) {
 			for (int j = 0; j < N; j++) {
 				if(arr[i][j]<10)

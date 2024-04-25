@@ -1,6 +1,7 @@
 package refone.realexam.service;
 
 import java.sql.SQLException;
+import java.util.List;
 import java.util.Scanner;
 
 import refone.realexam.dao.MemberRefactDAO;
@@ -13,7 +14,7 @@ public class MemberService {
 			MemberVO vo = new MemberVO();
 			MemberRefactDAO dao = new MemberRefactDAO();
 			Scanner sc = new Scanner(System.in);
-			int value = Integer.parseInt( dataInput("작업을 선택하세요\n[1:입력, 2:수정, 3:삭제 4:종료]") );
+			int value = Integer.parseInt( dataInput("작업을 선택하세요\n[1:입력, 2:수정, 3:삭제, 4:전체출력], 5:특정id출력, 6:종료") );
 
 			if (value == 1) {
 				vo.setMemid(dataInput("id"));
@@ -48,7 +49,25 @@ public class MemberService {
 					System.out.println("회원삭제에 실패했습니다.");
 				}
 			} else if (value == 4) {
-				System.out.println("종료합니다.");
+				List<MemberVO> list = dao.getListAll();
+				for(MemberVO data : list) {
+					System.out.print(data.getMemid() + " / ");
+					System.out.print(data.getPassword() + " / ");
+					System.out.print(data.getIname() + " / ");
+					System.out.print(data.getAddress() + " / ");
+					System.out.print(data.getPhone() + " / ");
+					System.out.println();
+				}
+			} else if(value == 5) {
+				String memId = dataInput("id");
+				MemberVO one = dao.getOne(memId);
+				System.out.print(one.getMemid() + " / ");
+				System.out.print(one.getPassword() + " / ");
+				System.out.print(one.getIname() + " / ");
+				System.out.print(one.getAddress() + " / ");
+				System.out.print(one.getPhone() + " / ");
+			} else if(value == 6) {
+				System.out.println("종료합니다");
 				break;
 			} else {
 				System.out.println("잘못된 입력입니다. 다시 입력하세요");

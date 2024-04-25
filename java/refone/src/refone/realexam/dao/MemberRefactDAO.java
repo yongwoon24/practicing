@@ -5,15 +5,18 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
+import refone.realexam.DbConUtil;
 import refone.realexam.vo.MemberVO;
 
 public class MemberRefactDAO {
-   public int add(MemberVO vo) throws SQLException, ClassNotFoundException { // C : Create 작업 메서드 만듬
+   public int add(MemberVO vo) throws SQLException{ // C : Create 작업 메서드 만듬
       int result = 0;
       String query = "insert into members values(?,?,?,?,?)";
 
-      Connection con = getConnection();
+      Connection con = DbConUtil.getConnection();
       PreparedStatement pstmt = con.prepareStatement(query);
       pstmt.setString(1, vo.getMemid());
       pstmt.setString(2, vo.getPassword());
@@ -22,56 +25,117 @@ public class MemberRefactDAO {
       pstmt.setString(5, vo.getPhone());
 
       result = pstmt.executeUpdate();
-      resourceClose(null, pstmt, con);
+      DbConUtil.resourceClose(null, pstmt, con);
       return result;
    }
    
-   public int update(MemberVO vo) throws ClassNotFoundException, SQLException { // U : Update 작업 메서드 만듬
+   public int update(MemberVO vo) throws SQLException { // U : Update 작업 메서드 만듬
       int result = 0;
       String query = "update members SET address = ? WHERE memId = ?";
-      Connection con = getConnection();
+      Connection con = DbConUtil.getConnection();
       PreparedStatement pstmt = con.prepareStatement(query);
       pstmt.setString(1, vo.getAddress());
       pstmt.setString(2, vo.getMemid());
 
       result = pstmt.executeUpdate();
-      resourceClose(null, pstmt, con);
+      DbConUtil.resourceClose(null, pstmt, con);
       return result;
    }
    
    public int delete(String memId) throws SQLException { // D : delete 작업 메서드 만듬
       int result = 0;
       String query = "delete from Members WHERE memId = ?";
-      Connection con = getConnection();
+      Connection con = DbConUtil.getConnection();
       
       PreparedStatement pstmt = con.prepareStatement(query);
       pstmt.setString(1, memId);
 
       result = pstmt.executeUpdate();
       
-      resourceClose(null, pstmt, con);
+      DbConUtil.resourceClose(null, pstmt, con);
       return result;
    }
    
-   // DB 연결을 담당하는 메서드(모든 메서드에서 공통적으로 들어가야 하기 때문에 분리)
-   public Connection getConnection() {
-      Connection con = null;
-      try {
-         Class.forName("oracle.jdbc.driver.OracleDriver");
-         con =  DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "yongwoon24", "yongwoon24");
-      } catch (ClassNotFoundException e) {
-         e.printStackTrace();
-      } catch (SQLException e) {
-         e.printStackTrace();
+   
+   public int getCount() throws SQLException{
+      int result = 0;
+      String query = "select  count(*) numCount from members";
+      ResultSet rs = null;
+      Connection con = DbConUtil.getConnection();
+      PreparedStatement pstmt = con.prepareStatement(query);
+      rs = pstmt.executeQuery();
+      while( rs.next() ) {
+         result = rs.getInt("numCount");
       }
       
-      return con;
+      DbConUtil.resourceClose(rs, pstmt, con);
+      return result;
    }
    
-   //자원을 반납(닫아주는) 역할의 메서드
-   public void resourceClose(ResultSet rs, PreparedStatement pstmt, Connection con) {
-      if( rs != null) { try { rs.close(); } catch (SQLException e) {e.printStackTrace();}}
-      if( pstmt != null) { try { pstmt.close(); } catch (SQLException e) {e.printStackTrace();}}
-      if( con != null) { try { con.close(); } catch (SQLException e) {e.printStackTrace();}}
+   public List<MemberVO> getListAll() throws SQLException{
+      List<MemberVO> list = new ArrayList<MemberVO>();
+      String query = "select  * from members";
+      ResultSet rs = null;
+      Connection con = DbConUtil.getConnection();
+      PreparedStatement pstmt = con.prepareStatement(query);
+      rs = pstmt.executeQuery();
+      while( rs.next() ) {
+         MemberVO vo = new MemberVO();
+         vo.setMemid(   rs.getString("memId") /*1열(memId열)의 데이터를 가져온다 */  ); // 넣어준다
+         vo.setPassword( rs.getString("password") );
+         vo.setIname( rs.getString("Iname") );
+         vo.setAddress( rs.getString("address") );
+         vo.setPhone( rs.getString("phone") );
+         list.add(vo);
+      }
+      
+      DbConUtil.resourceClose(rs, pstmt, con);
+      return list;
    }
+   
+   public MemberVO getOne(String memId) throws SQLException{
+      MemberVO vo = new MemberVO();
+      String query = "select  * from members where memId = ?";
+      ResultSet rs = null;
+      Connection con = DbConUtil.getConnection();
+      PreparedStatement pstmt = con.prepareStatement(query);
+      pstmt.setString(1, memId);
+      rs = pstmt.executeQuery();
+      
+      while( rs.next() ) {
+         vo.setMemid(   rs.getString("memId") /*1열(memId열)의 데이터를 가져온다 */  ); // 넣어준다
+         vo.setPassword( rs.getString("password") );
+         vo.setIname( rs.getString("Iname") );
+         vo.setAddress( rs.getString("address") );
+         vo.setPhone( rs.getString("phone") );
+
+      }
+      
+      DbConUtil.resourceClose(rs, pstmt, con);
+      return vo;
+   }
+   
+   public List<MemberVO> getListAddress(String address) throws SQLException{
+      List<MemberVO> list = new ArrayList<MemberVO>();
+      String query = "select  * from members where address = ?";
+      ResultSet rs = null;
+      Connection con = DbConUtil.getConnection();
+      PreparedStatement pstmt = con.prepareStatement(query);
+      pstmt.setString(1, address);
+      rs = pstmt.executeQuery();
+      while( rs.next() ) {
+         MemberVO vo = new MemberVO();
+         vo.setMemid(   rs.getString("memId") /*1열(memId열)의 데이터를 가져온다 */  ); // 넣어준다
+         vo.setPassword( rs.getString("password") );
+         vo.setIname( rs.getString("Iname") );
+         vo.setAddress( rs.getString("address") );
+         vo.setPhone( rs.getString("phone") );
+         list.add(vo);
+      }
+      
+      DbConUtil.resourceClose(rs, pstmt, con);
+      return list;
+   }
+   
+
 }
