@@ -1,20 +1,21 @@
 package kr.co.yangdoll.firstweb.vo;
 
-import java.util.Date;
 import java.util.Objects;
 
 public class SimpleBoardVo {
-	private long serNum;
+	private long serNum; //테이블에 프라이머리키로 설정된 컬럼
 	private String title; 
 	private String contents;
-	private String irum; 
-	private String password; 
+	private String irum;
+	private String password;
 	private long readCount; 
-	private Date regiDate;
-	
-	
+	private String regiDate;
+	public SimpleBoardVo() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 	public SimpleBoardVo(long serNum, String title, String contents, String irum, String password, long readCount,
-			Date regiDate) {
+			String regiDate) {
 		super();
 		this.serNum = serNum;
 		this.title = title;
@@ -23,28 +24,6 @@ public class SimpleBoardVo {
 		this.password = password;
 		this.readCount = readCount;
 		this.regiDate = regiDate;
-	}
-	public SimpleBoardVo() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-	@Override
-	public int hashCode() {
-		return Objects.hash(contents, irum, password, readCount, regiDate, serNum, title);
-	}
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		SimpleBoardVo other = (SimpleBoardVo) obj;
-		return Objects.equals(contents, other.contents) && Objects.equals(irum, other.irum)
-				&& Objects.equals(password, other.password) && readCount == other.readCount
-				&& Objects.equals(regiDate, other.regiDate) && serNum == other.serNum
-				&& Objects.equals(title, other.title);
 	}
 	public long getSerNum() {
 		return serNum;
@@ -82,18 +61,35 @@ public class SimpleBoardVo {
 	public void setReadCount(long readCount) {
 		this.readCount = readCount;
 	}
-	public Date getRegiDate() {
+	public String getRegiDate() {
 		return regiDate;
 	}
-	public void setRegiDate(Date regiDate) {
+	public void setRegiDate(String regiDate) {
 		this.regiDate = regiDate;
+	}
+	@Override
+	public int hashCode() {
+		return Objects.hash(contents, irum, password, readCount, regiDate, serNum, title);
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		SimpleBoardVo other = (SimpleBoardVo) obj;
+		return Objects.equals(contents, other.contents) && Objects.equals(irum, other.irum)
+				&& Objects.equals(password, other.password) && readCount == other.readCount
+				&& Objects.equals(regiDate, other.regiDate) && serNum == other.serNum
+				&& Objects.equals(title, other.title);
 	}
 	@Override
 	public String toString() {
 		return "SimpleBoardVo [serNum=" + serNum + ", title=" + title + ", contents=" + contents + ", irum=" + irum
 				+ ", password=" + password + ", readCount=" + readCount + ", regiDate=" + regiDate + "]";
-	} 
-	
+	}
 	
 	
 }
