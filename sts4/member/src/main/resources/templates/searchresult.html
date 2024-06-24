@@ -1,0 +1,24 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<table border="1">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Phone</th>
+            <th>Email</th>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- 반복문을 통해 검색된 회원 목록 출력 -->
+        <tr th:each="member : ${members}">
+            <td th:text="${member.memId}"></td>
+            <td th:text="${member.memName}"></td>
+            <td th:text="${member.phone}"></td>
+            <td th:text="${member.email}"></td>
+        </tr>
+    </tbody>
+</table>
+
+<br>
+<a href="/">Back to Home</a>
+</html>

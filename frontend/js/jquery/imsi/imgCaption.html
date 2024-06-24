@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="./js/jquery-ui-1.10.3.custom.min.js"></script>
+    <link rel="stylesheet" href="./css/main.css">
+</head>
+<body>
+    <div id="container">
+        <div class="thumbs">
+            <a href="./images/pic1.jpg"><img src="./images/th_pic1.jpg" alt=""></a>
+            <em>첫번째</em>
+            <a href="./images/pic2.jpg"><img src="./images/th_pic2.jpg" alt=""></a>
+            <em>두번째</em>
+            <a href="./images/pic3.jpg"><img src="./images/th_pic3.jpg" alt=""></a>
+            <em>세번째</em>
+        </div>
+        <div id="largeImg">
+            <img src="./images/pic1.jpg" alt="">
+        </div>
+    </div>
+    <script>
+        
+        
+        $(document).ready(function(){
+            $('#container>.thumbs>em').hide();
+            $('.thumbs>a').click(function(){
+                $('#caption').remove
+                let msg = $(this).next('em').text();
+
+                $('#largeImg').append('<div id="caption"></div>');
+                $('#largeImg #caption').text(msg);
+                let valueData = $(this).attr("href");
+
+                $('#largeImg>img').attr('src', valueData);
+
+                let cbHeight = $('#largeImg #caption').height()+23;
+                $('#largeImg #caption').animate({top : '-' + cbHeight + "px"}, 2000);
+                $('#largeImg>img').attr('src', valueData);
+
+                return false;
+            });
+        });
+    </script>
+
+</body>
+</html>

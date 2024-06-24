@@ -1,0 +1,12 @@
+div.slideshow{
+    overflow: hidden;
+    position: relative;
+    height: 465px;
+}
+
+div.slideshow img{
+    position: absolute;
+    left: 50%;
+    margin-left: -800px;
+    display: none;
+}

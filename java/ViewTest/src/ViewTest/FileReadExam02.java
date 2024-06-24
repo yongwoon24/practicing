@@ -90,5 +90,6 @@ public class FileReadExam02 {
 			}
 			System.out.println();
 		}
+		sc.close();
 	}
 }

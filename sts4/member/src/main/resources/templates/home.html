@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>All Members</title>
+</head>
+<body>
+    <h1>All Members</h1>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Password</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Count</th>
+                <th>Grade</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="member : ${members}">
+                <td th:text="${member.memId}"></td>
+                <td th:text="${member.memPwd}"></td>
+                <td th:text="${member.memName}"></td>
+                <td th:text="${member.email}"></td>
+                <td th:text="${member.phone}"></td>
+                <td th:text="${member.count}"></td>
+                <td th:text="${member.grade}"></td>
+            </tr>
+        </tbody>
+    </table>
+	
+	<a href="./update">정보변경</a>
+	<a href="./search">찾기</a>
+</body>
+</html>

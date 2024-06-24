@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd
+		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
+
+	<!-- Root Context: defines shared resources visible to all other web components -->
+
+	<bean class="com.zaxxer.hikari.HikariConfig" id="hikariConfig">
+
+		<property name="driverClassName"
+			value="oracle.jdbc.OracleDriver" />
+		<property name="jdbcUrl"
+			value="jdbc:oracle:thin:@192.168.0.125:1521:orcl" />
+		<!-- <property name="driverClassName" value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy" 
+			/> <property name="jdbcUrl" value="jdbc:log4jdbc:oracle:thin:@192.168.0.125:1521:orcl" 
+			/> -->
+		<property name="username" value="yw" />
+		<property name="password" value="yw"></property>
+	</bean>
+
+	<bean class="com.zaxxer.hikari.HikariDataSource" id="dataSource"
+		destroy-method="close">
+		<constructor-arg ref="hikariConfig"></constructor-arg>
+	</bean>
+
+	<bean class="org.mybatis.spring.SqlSessionFactoryBean"
+		id="sqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	
+	<bean class="com.yangdoll.aspectprj.advice.PerformanceAdvice" id="performanceAdvice"></bean>
+	
+	<aop:config>
+		<aop:aspect id="perfAspect" ref="performanceAdvice">
+			<aop:around method="trace" pointcut="execution(public * com.yangdoll.aspectprj.service..*(..))" />
+			<aop:before method="beforeAdv" pointcut="execution(public * com.yangdoll.aspectprj.service..*(..))"/>
+		</aop:aspect>
+	</aop:config>
+
+	<bean class="com.yangdoll.aspectprj.advice.Imsi" id="Imsi"></bean>
+	<aop:aspectj-autoproxy />
+	
+	<context:component-scan
+		base-package="kr.co.yangdoll" />
+	<mybatis-spring:scan
+		base-package="kr.co.yangdoll.persistence" />
+</beans>

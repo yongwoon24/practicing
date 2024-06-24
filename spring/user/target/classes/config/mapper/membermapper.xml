@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="usermapper">
+  <select id="selectOne" parameterType="String" resultType="UserVO">
+  	select * from users where userId = #{userId}
+  </select>
+  <insert id="insertUser" parameterType="UserVO">
+  	insert into users values( #{userId}, #{userPwd}, #{userName})
+  </insert>
+  <update id="updateUser" parameterType="UserVO">
+    UPDATE users SET userPwd=#{userPwd} WHERE userName=#{userName}
+</update>
+</mapper>

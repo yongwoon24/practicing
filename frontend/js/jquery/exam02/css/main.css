@@ -1,0 +1,30 @@
+        body{
+            background-color: #192839;
+        }
+        #container{
+            width: 650px;
+            margin: 0 auto;
+        }
+        div.thumbs{
+            width: 100px;
+            padding: 5px;
+            float: left;
+        }
+        div.thumbs img{
+            border: 1px solid white;
+            margin: 5px;
+        }
+        div#largeImg{
+            margin-left: 110px;
+            width: 500px;
+            height: 280px;
+            border: 1px solid white;
+            padding: 5px;
+            overflow: hidden;
+        }
+        #caption{
+            background: url("../images/backimg.png") repeat-y;
+            padding: 10px;
+            color: white;
+            position: relative;
+        }

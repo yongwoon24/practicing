@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.yangdoll.persistence.BoardMapperTwo">
+	
+	<select id="getMultiConBoard" parameterType="kr.co.yangdoll.domain.SearchVO" 
+			resultType="kr.co.yangdoll.domain.BoardVO">
+		select * from boards
+			where bno = #{searchNum} and title > #{searchTitle}
+	</select>
+	
+	<select id="getMultiConBoardTwo" parameterType="hashMap" 
+			resultType="kr.co.yangdoll.domain.BoardVO">
+		select * from boards
+			where bno = #{searchNum} and title > #{searchTitle}
+	</select>
+	
+	<select id="getMultiConBoardThree" parameterType="map" 
+			resultType="kr.co.yangdoll.domain.BoardVO">
+		select * from boards
+			where bno = #{searchNum} and title > #{searchTitle}
+	</select>
+	
+	
+	<!-- 동적쿼리 -->
+	<select id="getConditionWhereList" parameterType="hashMap" resultType="kr.co.yangdoll.domain.BoardVO">
+		
+		select * from boards
+		  <where>
+			<if test="searchTitle != null">
+				<![CDATA[
+				 title > #{searchTitle}
+				]]>
+			</if>
+			<if test="searchNum != null">
+				<![CDATA[
+				and bno > #{searchNum}
+				]]>
+			</if>
+		</where>
+	</select>
+	
+	<select id="getConditionTrimList" parameterType="kr.co.yangdoll.domain.SearchVO" resultType="kr.co.yangdoll.domain.BoardVO">
+		
+		select * from boards
+		  <trim prefix="where" prefixOverrides="and | or">
+			<if test="searchTitle != null">
+				<![CDATA[
+				 and title > #{searchTitle}
+				]]>
+			</if>
+			<if test="searchNum != null">
+				<![CDATA[
+				and bno > #{searchNum}
+				]]>
+			</if>
+		</trim>
+	</select>
+
+</mapper>

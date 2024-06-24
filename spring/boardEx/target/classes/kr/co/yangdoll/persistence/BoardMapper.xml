@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.yangdoll.persistence.BoardMapper">
+
+	<insert id="insertBoard" parameterType="kr.co.yangdoll.domain.BoardVO">
+		insert INTO boards(bno, title, contents, writer, regdate, updatedate) 
+     values( bd_seq.nextval, #{ title }, #{ contents }, #{ writer }, sysdate, sysdate)
+	</insert>
+	
+	<insert id="insertBoardGetBno" parameterType="kr.co.yangdoll.domain.BoardVO">
+		<selectKey keyProperty="bno" order="BEFORE" resultType="Integer">
+			select  bd_seq.nextval  from dual
+		</selectKey>
+		insert INTO boards(bno, title, contents, writer, regdate, updatedate) 
+     			values( #{bno}, #{ title }, #{ contents }, #{ writer }, sysdate, sysdate)
+	</insert>
+ 	
+	<delete id="deleteBoard" parameterType="Integer">
+		delete from boards where bno = #{bno}
+	</delete>
+	
+	<update id="updateBoard" parameterType="kr.co.yangdoll.domain.BoardVO">
+		update boards set updatedate = sysdate, title= #{title}, contents=#{contents}, writer=#{writer} where bno = #{bno}
+	</update>
+	
+	<select id="getCount" resultType="int">
+		select count(*) from boards
+	</select>
+	
+	<select id="getBoard" resultType="kr.co.yangdoll.domain.BoardVO" parameterType="java.lang.Integer">
+		select * from boards where bno = #{bno}
+	</select>
+ 	
+	<select id="getBoardList" parameterType= "kr.co.yangdoll.util.PageInfoVO" 
+				resultType="kr.co.yangdoll.domain.BoardVO">
+		<![CDATA[
+		select bno, title, writer, updatedate from 
+    				( select /*+ INDEX_DESC(boards board_bno_pk ) */ rownum rn , boards.*  from boards where  rownum <= #{endList} )
+    			where rn > #{startList}
+		]]>
+	</select>
+
+</mapper>
