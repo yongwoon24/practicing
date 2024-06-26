@@ -11,4 +11,7 @@ df_exam2 <- read_excel("C:/RPAWork/workspace/python/_종목_하락순_정렬.xls
 df_exam3 <- read_excel("C:/RPAWork/workspace/R/Data/excel_exam.xlsx")
 print(apply(df_exam3,2,mean))
 
-df_exam3
+df_exam4 <- read.csv("C:/RPAWork/workspace/R/Data/csv_exam.txt", header=TRUE, skip=1)
+print(df_exam4)
+
+
