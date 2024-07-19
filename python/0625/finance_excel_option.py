@@ -1,5 +1,6 @@
 import pandas as pd
 import time
+from datetime import datetime
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.options import Options
@@ -58,20 +59,23 @@ df = pd.DataFrame(data, columns=['종목명', '현재가', '전일비', '등락�
 
 name = ''
 if(select_kind == '1'):
-    name == '코스피'
+    name = '코스피'
 else:
     name = '코스닥'
-
+date = datetime.now().strftime("%Y%m%d")
 match(select_theme):
     case '1':
-        excel_filename = name + '_종목_거래량순_정렬.xlsx'
+        excel_filename = date + '_' + name + '_종목_거래량순_정렬.xlsx'
     case '2':
-        excel_filename = name + '_종목_상승순_정렬.xlsx'
+        excel_filename = date + '_'  + name + '_종목_상승순_정렬.xlsx'
     case '3':
-        excel_filename = name + '_종목_하락순_정렬.xlsx'
+        excel_filename = date + '_'  + name + '_종목_하락순_정렬.xlsx'
     case '4':
-        excel_filename = name + '_종목_시총순_정렬.xlsx'
+        excel_filename = date + '_'  + name + '_종목_시총순_정렬.xlsx'
 
-df.to_excel(excel_filename, index=False)
+
+
+
+df.head(10).to_excel(excel_filename, index=False)
 
 print(f"엑셀 파일 '{excel_filename}'이 저장되었습니다.")

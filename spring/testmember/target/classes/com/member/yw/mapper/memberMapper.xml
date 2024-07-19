@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.member.yw.mapper.MemberDAO">
+	
+	<insert id="addMember" parameterType="MemberVO">
+		insert into members2 values( #{memId}, #{memName}, #{memPwd}, #{address}, #{email}, sysdate, sysdate, 1)
+	</insert>
+	<insert id="addBackupMember" parameterType="MemberVO">
+		insert into backupmembers2 values( #{memId}, #{memName}, #{memPwd}, #{address}, #{email}, #{hireDate}, #{lastDate}, #{grade})
+	</insert>
+	<delete id="delMember" parameterType="java.lang.String">
+		<!-- insert into backupmembers2 SELECT * FROM members2 where memId = #{memId}; -->
+		delete from members2 where memId = #{memId}
+	</delete>
+	<update id="modifyMember" parameterType="MemberVO">
+		update members2 SET memPwd=#{memPwd}, memName=#{memName}, address=#{address}, email=#{email}, lastDate=sysdate, grade=#{grade} WHERE memId=#{memId}
+	</update>
+	<select id="getMemberOne" parameterType="java.lang.String" resultType="MemberVO">
+		select * from members2 where memId = #{memId}
+	</select>
+	<select id="getMemberAll" resultType="MemberVO">
+		select * from members2
+	</select>
+	<select id="getCount" resultType="int">
+		select count(*) from members2
+	</select>
+</mapper>
